@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Exámenes Recepcionales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold mb-4 text-center">
+        Gestión de Exámenes Recepcionales
+      </h1>
+
+      <!-- Barra de navegación para moverse entre Fases -->
+      <div id="navBar" class="flex justify-center space-x-4 mb-4">
+        <button
+          id="navFase1"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+        >
+          Fase 1: Alumnos
+        </button>
+        <button
+          id="navFase2"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+        >
+          Fase 2: Maestros
+        </button>
+        <button
+          id="navFase3"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+        >
+          Fase 3: Configuración
+        </button>
+        <button
+          id="navFase4"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+        >
+          Fase 4: Horario
+        </button>
+      </div>
+
+      <!-- Fase 1: Agregar Alumnos -->
+      <div id="fase1" class="p-4 bg-white shadow rounded mb-4">
+        <h2 class="text-2xl font-semibold mb-2">Fase 1: Agregar Alumnos</h2>
+        <form id="formAlumno" class="flex flex-col space-y-2">
+          <input
+            type="text"
+            id="nombreAlumno"
+            placeholder="Nombre del Alumno"
+            class="border rounded p-2"
+          />
+          <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+            Agregar Alumno
+          </button>
+        </form>
+        <ul id="listaAlumnos" class="mt-4 list-disc pl-6"></ul>
+        <button id="btnFase1" class="mt-4 bg-green-500 text-white p-2 rounded">
+          Siguiente: Ingresar Maestros
+        </button>
+      </div>
+
+      <!-- Fase 2: Agregar Maestros Sinodales -->
+      <div id="fase2" class="p-4 bg-white shadow rounded mb-4 hidden">
+        <h2 class="text-2xl font-semibold mb-2">
+          Fase 2: Agregar Maestros Sinodales
+        </h2>
+        <form id="formMaestro" class="flex flex-col space-y-2">
+          <input
+            type="text"
+            id="nombreMaestro"
+            placeholder="Nombre del Maestro"
+            class="border rounded p-2"
+          />
+          <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+            Agregar Maestro
+          </button>
+        </form>
+        <ul id="listaMaestros" class="mt-4 list-disc pl-6"></ul>
+        <button id="btnFase2" class="mt-4 bg-green-500 text-white p-2 rounded">
+          Siguiente: Configuración
+        </button>
+      </div>
+
+      <!-- Fase 3: Configuración -->
+      <div id="fase3" class="p-4 bg-white shadow rounded mb-4 hidden">
+        <h2 class="text-2xl font-semibold mb-2">Fase 3: Configuración</h2>
+        <form id="formConfig" class="flex flex-col space-y-4">
+          <div class="flex flex-col">
+            <label for="fechaInicio" class="font-medium"
+              >Fecha de inicio:</label
+            >
+            <input
+              type="date"
+              id="fechaInicio"
+              class="border rounded p-2"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label class="font-medium">Horario Laborable:</label>
+            <div class="flex space-x-2">
+              <input
+                type="time"
+                id="horaInicio"
+                class="border rounded p-2"
+              />
+              <span class="self-center">a</span>
+              <input
+                type="time"
+                id="horaFin"
+                class="border rounded p-2"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <label class="font-medium">Días Laborables:</label>
+            <div class="grid grid-cols-4 gap-2">
+              <label>
+                <input type="checkbox" class="diaCheck" value="1" checked />
+                Lunes
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="2" checked />
+                Martes
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="3" checked />
+                Miércoles
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="4" checked />
+                Jueves
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="5" checked />
+                Viernes
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="6" />
+                Sábado
+              </label>
+              <label>
+                <input type="checkbox" class="diaCheck" value="0" />
+                Domingo
+              </label>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <label class="font-medium">Salones Disponibles:</label>
+            <div class="flex space-x-2">
+              <input
+                type="text"
+                id="salonInput"
+                placeholder="ID del Salón"
+                class="border rounded p-2"
+              />
+              <button
+                type="button"
+                id="btnAgregarSalon"
+                class="bg-blue-500 text-white p-2 rounded"
+              >
+                Agregar Salón
+              </button>
+            </div>
+            <ul id="listaSalones" class="mt-2 list-disc pl-6"></ul>
+          </div>
+          <button type="submit" class="bg-green-500 text-white p-2 rounded">
+            Guardar Configuración y Siguiente
+          </button>
+        </form>
+      </div>
+
+      <!-- Fase 4: Generar Horario -->
+      <div id="fase4" class="p-4 bg-white shadow rounded mb-4 hidden">
+        <h2 class="text-2xl font-semibold mb-2">Fase 4: Generar Horario</h2>
+        <div class="flex space-x-4 mb-4">
+          <button
+            id="btnGenerarHorario"
+            class="bg-purple-500 text-white p-2 rounded"
+          >
+            Generar Horario
+          </button>
+          <button
+            id="btnActualizarHorario"
+            class="bg-yellow-500 text-white p-2 rounded"
+          >
+            Actualizar Horario
+          </button>
+        </div>
+        <div id="resultado"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
